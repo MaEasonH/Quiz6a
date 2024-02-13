@@ -1,0 +1,29 @@
+---
+title: "Quiz6-4"
+format: pdf
+editor: visual
+---
+
+
+```{r}
+#| echo: false
+install.packages("ggplot2")
+library(ggplot2)
+
+# Simulated data
+set.seed(1) 
+hours <- 1:8
+employee_1 <- round(rnorm(8, mean=10, sd=3))
+employee_2 <- employee_1 + round(rnorm(8, sd=2))
+data <- data.frame(hour=hours, employee_1=employee_1, employee_2=employee_2)
+
+
+ggplot(data, aes(x=employee_1, y=employee_2)) +
+  geom_point(color="blue", size=3) + # Plot points
+  geom_smooth(method="lm", color="red") + # Add a linear regression line
+  labs(title="Correlation between Employee Efficiencies",
+       x="Employee 1 Customers Served",
+       y="Employee 2 Customers Served") +
+  theme_minimal()
+```
+
