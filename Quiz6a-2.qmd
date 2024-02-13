@@ -1,0 +1,39 @@
+---
+title: "Quiz6a"
+format: pdf
+editor: visual
+---
+
+1. Generate Simulated Data
+```{r}
+set.seed(123)
+
+hours <- 1:8
+employee_1 <- round(rnorm(8, mean=10, sd=3))  # Employee 1 customers served
+employee_2 <- employee_1 + round(rnorm(8, sd=2))  # Employee 2, positively correlated with some variation
+
+data <- data.frame(hour=hours, employee_1=employee_1, employee_2=employee_2)
+print(data)
+```
+
+2.min value
+```{r}
+min(data) == 4
+```
+3. Correlation Test
+```{r}
+
+cor.test(data$employee_1, data$employee_2)
+```
+4. Plotting the Data
+```{r}
+plot(data$employee_1, data$employee_2, main="Correlation between Employee Efficiencies",
+     xlab="Employee 1 Customers Served", ylab="Employee 2 Customers Served", pch=19, col="blue")
+```
+5. Linear Regression Analysis
+```{r}
+model <- lm(employee_2 ~ employee_1, data=data)
+summary(model)
+```
+
+
