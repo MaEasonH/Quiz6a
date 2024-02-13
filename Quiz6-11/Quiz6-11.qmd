@@ -1,0 +1,31 @@
+---
+title: "Quiz6-11"
+format: pdf
+editor: visual
+---
+
+```{r}
+#| echo: false
+
+install.packages("testthat")
+library(testthat)
+
+german_cities <- c("Berlin", "Hamburg", "Munich", "Cologne", "Frankfurt", "Rostock")
+
+# Test 1: Exact match
+test_that("german_cities contains exactly the specified cities", {
+  expect_equal(sort(german_cities), sort(c("Berlin", "Hamburg", "Munich", "Cologne", "Frankfurt", "Rostock")))
+})
+
+# Test 2: No duplicates
+test_that("german_cities contains no duplicate entries", {
+  expect_equal(length(german_cities), length(unique(german_cities)))
+})
+
+# Test 3: Correct data type
+test_that("german_cities is a character vector", {
+  expect_true(is.character(german_cities))
+})
+```
+
+
